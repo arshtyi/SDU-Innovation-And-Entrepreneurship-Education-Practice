@@ -15,7 +15,7 @@ const ll LLINF = 0x3f3f3f3f3f3f3f3f;
 // const int M = 1e9 + 7;
 // #define int ll
 const int N = 1e5 + 10, M = 1e9 + 7;
-ll n, m, l, r, c, b;
+ll n, m, cnt, r, c, b;
 ll cf[25][100005];
 ll prime[25] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
 ll qpow(ll a, ll b)
@@ -38,7 +38,7 @@ void f()
         while (the_c % prime[i] == 0)
         {
             the_c /= prime[i];
-            cf[i][l] += b, cf[i][r + 1] -= b;
+            cf[i][cnt] += b, cf[i][r + 1] -= b;
         }
     }
 }
@@ -59,7 +59,7 @@ void _()
     cin >> n >> m;
     while (m--)
     {
-        cin >> l >> r >> c >> b;
+        cin >> cnt >> r >> c >> b;
         f();
     }
     GCD();

@@ -1,0 +1,86 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fi first
+#define se second
+#define F(T, i, a, b) for (T i = (a); i < (b); ++i)
+#define FF(T, i, a, b) for (T i = (a); i <= (b); ++i)
+#define R(T, i, a, b) for (T i = (a); i > (b); --i)
+#define RR(T, i, a, b) for (T i = (a); i >= (b); --i)
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define allab(x, a, b) (x).begin() + (a), (x).begin() + (b)
+#define rallab(x, a, b) (x).rbegin() + (a), (x).rbegin() + (b)
+#define pb push_back
+#define eb emplace_back
+#define pf push_front
+#define ef emplace_front
+using ll = long long;
+using ull = unsigned long long;
+using pii = pair<int, int>;
+const int INF = 0x3f3f3f3f;
+const ll LLINF = 0x3f3f3f3f3f3f3f3f;
+const int M1 = 1e9 + 7, M2 = 998244353;
+#define endl '\n'
+#define local freopen("data.in", "r", stdin)
+#define locall freopen("data.in", "r", stdin), freopen("data.out", "w", stdout)
+// #define int ll
+const int N = 1e5 + 10;
+ll n, m, p, tot;
+struct edge
+{
+    ll u, v, nxt, w;
+    bool operator<(const edge &rhs) { return w < rhs.w; }
+};
+vector<ll> head(N, -1), fa(N);
+vector<edge> edges(3 * N);
+void addEdge(const ll &u, const ll &v, const ll &w) { edges[tot].u = u, edges[tot].v = v, edges[tot].w = w, edges[tot].nxt = head[u], head[u] = tot++; }
+ll find(const ll &x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
+bool unite(const ll &x, const ll &y)
+{
+    ll fx = find(x), fy = find(y);
+    if (fx == fy)
+        return false;
+    fa[fx] = fy;
+    return true;
+}
+ll kruskal()
+{
+    sort(allab(edges, 0, tot));
+    FF(ll, i, 0, n)
+    fa[i] = i;
+    ll ans = 0, cnt = 0;
+    F(ll, i, 0, tot)
+    {
+        auto e0 = edges[i];
+        if (unite(e0.u, e0.v))
+        {
+            ans += e0.w;
+            if (++cnt == n)
+                return ans;
+        }
+    }
+    return -1;
+}
+void _()
+{
+    cin >> n >> m >> p;
+    FF(ll, i, 1, n)
+    addEdge(0, i, p);
+    FF(ll, i, 1, m)
+    {
+        ll a, b, c;
+        cin >> a >> b >> c;
+        addEdge(a, b, c);
+    }
+    cout << kruskal();
+}
+signed main()
+{
+    // local;
+    cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
+    int T = 1;
+    // cin >> T;
+    while (T--)
+        _();
+    return 0;
+}
