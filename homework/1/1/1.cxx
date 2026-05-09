@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-signed main()
-{
+signed main() {
     set<char> s;
     char c;
     while (cin >> c)

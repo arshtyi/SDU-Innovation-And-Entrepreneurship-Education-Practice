@@ -26,18 +26,21 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 #define FILE 0
 #define DIRE 1
 ll LD, LR, file_sz;
-struct node
-{
-    unordered_map<string, node *> dir;
+struct node {
+    unordered_map<string, node*> dir;
     int type;
     ll ld, lr, sd, sr;
-    node(int t) : ld(0), lr(0), sd(0), sr(0), type(t) {}
+    node(int t)
+        : ld(0)
+        , lr(0)
+        , sd(0)
+        , sr(0)
+        , type(t) {}
 };
 string op, pa;
 vector<string> path;
-node *root = new node(DIRE);
-void prase()
-{
+node* root = new node(DIRE);
+void prase() {
     path.pb("/");
     stringstream ss(pa);
     string s;
@@ -45,35 +48,27 @@ void prase()
         if (!s.empty())
             path.pb(s);
 }
-bool add(node *r, int u, int old_size)
-{
+bool add(node* r, int u, int old_size) {
     bool end = u + 1 == path.size();
     if (!end && r->lr && r->lr < r->sr + file_sz - old_size)
         return false;
     bool hc = false;
-    if (r->dir[path[u]])
-    {
+    if (r->dir[path[u]]) {
         if (end && r->dir[path[u]]->type != FILE)
             return false;
         if (!end && r->dir[path[u]]->type != DIRE)
             return false;
-    }
-    else if (end)
-    {
+    } else if (end) {
         r->dir[path[u]] = new node(FILE);
         hc = true;
-    }
-    else
-    {
+    } else {
         r->dir[path[u]] = new node(DIRE);
         hc = true;
     }
-    node *next = r->dir[path[u]];
-    if (end)
-    {
+    node* next = r->dir[path[u]];
+    if (end) {
         ll modify = file_sz - next->sr;
-        if ((r->ld && r->ld < r->sd + modify) || (r->lr && r->lr < r->sr + modify))
-        {
+        if ((r->ld && r->ld < r->sd + modify) || (r->lr && r->lr < r->sr + modify)) {
             if (hc)
                 r->dir[path[u]] = nullptr;
             return false;
@@ -82,8 +77,7 @@ bool add(node *r, int u, int old_size)
         r->sd += modify, r->sr += modify;
         return true;
     }
-    if (add(next, u + 1, old_size))
-    {
+    if (add(next, u + 1, old_size)) {
         r->sr += file_sz - old_size;
         return true;
     }
@@ -91,15 +85,13 @@ bool add(node *r, int u, int old_size)
         r->dir[path[u]] = nullptr;
     return false;
 }
-ll del(node *r, int u)
-{
+ll del(node* r, int u) {
     if (r->dir[path[u]] == nullptr)
         return 0;
     bool end = u + 1 == path.size();
     if (!end && r->dir[path[u]]->type != DIRE)
         return 0;
-    if (end)
-    {
+    if (end) {
         ll res = r->dir[path[u]]->sr;
         if (r->dir[path[u]]->type == FILE)
             r->sd -= res;
@@ -111,16 +103,14 @@ ll del(node *r, int u)
     r->sr -= res;
     return res;
 }
-bool reset(node *r, int u)
-{
+bool reset(node* r, int u) {
     if (r->dir[path[u]] == nullptr)
         return false;
     bool end = u + 1 == path.size();
     if (!end && r->dir[path[u]]->type != DIRE)
         return false;
-    node *next = r->dir[path[u]];
-    if (end)
-    {
+    node* next = r->dir[path[u]];
+    if (end) {
         if (next->type != DIRE)
             return false;
         if ((LD && LD < next->sd) || (LR && LR < next->sr))
@@ -130,8 +120,7 @@ bool reset(node *r, int u)
     }
     return reset(next, u + 1);
 }
-ll get_size(node *r, int u)
-{
+ll get_size(node* r, int u) {
     bool end = u + 1 == path.size();
     if (r->dir[path[u]] == nullptr)
         return 0;
@@ -143,31 +132,24 @@ ll get_size(node *r, int u)
         return r->dir[path[u]]->sr;
     return get_size(r->dir[path[u]], u + 1);
 }
-void _()
-{
+void _() {
     root->dir["/"] = new node(DIRE);
     int n;
     cin >> n;
-    FF(int, i, 1, n)
-    {
+    FF(int, i, 1, n) {
         cin >> op >> pa;
         path.clear();
         prase();
-        if (op == "C")
-        {
+        if (op == "C") {
             cin >> file_sz;
             if (add(root, 0, get_size(root, 0)))
                 cout << "Y" << endl;
             else
                 cout << "N" << endl;
-        }
-        else if (op == "R")
-        {
+        } else if (op == "R") {
             del(root, 0);
             cout << "Y" << endl;
-        }
-        else
-        {
+        } else {
             cin >> LD >> LR;
             if (reset(root, 0))
                 cout << "Y" << endl;
@@ -176,8 +158,7 @@ void _()
         }
     }
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

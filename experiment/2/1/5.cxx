@@ -27,23 +27,20 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 const int N = 2e5 + 10;
 vector<ll> a(N), pre(N);
 int n;
-void _()
-{
+void _() {
     cin >> n;
     FF(int, i, 1, n)
     cin >> a[i], pre[i] = pre[i - 1] + a[i];
     int k;
     ll dis = INF;
-    F(int, i, 1, n)
-    {
+    F(int, i, 1, n) {
         ll t = abs(2 * pre[i] - pre[n]);
         if (t < dis)
             dis = t, k = i;
     }
     cout << ((pre[n] * pre[n] + pre[n] + 2 * pre[k] * pre[k] - 2 * pre[n] * pre[k]) >> 1) << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

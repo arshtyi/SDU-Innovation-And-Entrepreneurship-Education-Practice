@@ -26,11 +26,9 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 // #define int ll
 ll n, cnt, f, ans;
 char c;
-void _()
-{
+void _() {
     cin >> n;
-    while (n--)
-    {
+    while (n--) {
         cin >> c;
         if ((c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') && (!f))
             f = 1, cnt++;
@@ -41,8 +39,7 @@ void _()
     }
     cout << ans << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

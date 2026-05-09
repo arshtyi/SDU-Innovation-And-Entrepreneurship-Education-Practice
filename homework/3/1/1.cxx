@@ -11,7 +11,9 @@ typedef long double ld;
 #ifdef fio
 char buf[1 << 20], *p1, *p2, pbuf[1 << 20], *pp = pbuf;
 #define gc() (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 1 << 20, stdin), p1 == p2) ? EOF : *p1++)
-#define pc(c) (pp - pbuf == (1 << 20) ? (fwrite(pbuf, 1, 1 << 20, stdout), pp = pbuf, *pp++ = (c)) : (*pp++ = (c)))
+#define pc(c)                                                                                      \
+    (pp - pbuf == (1 << 20) ? (fwrite(pbuf, 1, 1 << 20, stdout), pp = pbuf, *pp++ = (c))           \
+                            : (*pp++ = (c)))
 #else
 #define gc getchar
 // #define gc getchar_unlocked
@@ -42,14 +44,11 @@ char buf[1 << 20], *p1, *p2, pbuf[1 << 20], *pp = pbuf;
 #define local freopen("data.in", "r", stdin)
 #define locall freopen("data.in", "r", stdin), freopen("data.out", "w", stdout)
 // #define int long long
-template <typename T>
-void read(T &t)
-{
+template <typename T> void read(T& t) {
     t = 0;
     bool f = 1;
     char x = gc();
-    while (x < '0' || x > '9')
-    {
+    while (x < '0' || x > '9') {
         if (x == '-')
             f = 0;
         x = gc();
@@ -59,25 +58,23 @@ void read(T &t)
     t = f ? t : -t;
     return;
 }
-template <typename T>
-void write(T t)
-{
+template <typename T> void write(T t) {
     bool f = false;
     if (t < 0)
         f = true, pc('-'), t = -t;
     static int sta[40];
     int top = 0;
-    do
-    {
+    do {
         sta[top++] = t % 10, t /= 10;
     } while (t);
     while (top)
         pc('0' + sta[--top]);
     return;
 }
-bool iso(int n, int k) { return n % k == 0 || n % 10 == k; }
-void sol()
-{
+bool iso(int n, int k) {
+    return n % k == 0 || n % 10 == k;
+}
+void sol() {
     int n, k;
     cin >> n >> k;
     // cout << n << " " << k << endl;
@@ -85,22 +82,18 @@ void sol()
     FF(i, 1, n)
     child.pb(i);
     int idx = 0, cnt = 1;
-    while (child.size() > 1)
-    {
-        if (iso(cnt, k))
-        {
+    while (child.size() > 1) {
+        if (iso(cnt, k)) {
             child.erase(child.begin() + idx);
             if (idx == child.size())
                 idx = 0;
-        }
-        else
+        } else
             idx = (idx + 1) % child.size();
         cnt++;
     }
     cout << child[0] << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     unsync;
     int T = 1; // cin >> T;

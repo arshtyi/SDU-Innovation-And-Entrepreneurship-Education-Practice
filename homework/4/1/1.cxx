@@ -19,11 +19,9 @@ const int M = 1e9 + 7;
 const int N = 5e5 + 5, NN = 26;
 int cnt[N][NN];
 int n, m;
-void _()
-{
+void _() {
     cin >> n;
-    FF(i, 1, n)
-    {
+    FF(i, 1, n) {
         char c;
         cin >> c;
         F(j, 0, NN)
@@ -33,8 +31,7 @@ void _()
     // F(j, 0, NN)
     // cout << cnt[i][j] << " \n"[j == NN - 1];
     cin >> m;
-    while (m--)
-    {
+    while (m--) {
         int l, r;
         cin >> l >> r;
         l--;
@@ -44,8 +41,7 @@ void _()
         cout << (f ? "YES\n" : "NO\n");
     }
 }
-signed main()
-{
+signed main() {
     int T = 1;
     // cin >> T;
     while (T--)

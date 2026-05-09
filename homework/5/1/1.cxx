@@ -27,29 +27,24 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 vector<int> a;
 int n, k, t;
 double eps = 1e-6, mid, ma, mi = 0;
-bool check(double &len)
-{
+bool check(double& len) {
     int cnt = 0;
-    for (auto &i : a)
-    {
+    for (auto& i : a) {
         cnt += i / len;
         if (cnt >= k)
             return true;
     }
     return false;
 }
-void _()
-{
+void _() {
     cin >> n >> k;
-    F(int, i, 0, n)
-    {
+    F(int, i, 0, n) {
         cin >> t;
         a.eb(t);
     }
     sort(all(a), greater<int>());
     ma = a[0];
-    while (ma - mi > eps)
-    {
+    while (ma - mi > eps) {
         mid = (ma + mi) / 2;
         if (check(mid))
             mi = mid;
@@ -58,8 +53,7 @@ void _()
     }
     cout << fixed << setprecision(6) << ma << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

@@ -26,11 +26,9 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 // #define int ll
 ll n, f, cnt;
 char t, s[1000010];
-void _()
-{
+void _() {
     cin >> n;
-    while (n--)
-    {
+    while (n--) {
         cin >> t;
         if ((t == 'a' || t == 'e' || t == 'i' || t == 'o' || t == 'u') && !f)
             f = 1, s[cnt] = t, cnt++;
@@ -43,8 +41,7 @@ void _()
     }
     cout << s << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

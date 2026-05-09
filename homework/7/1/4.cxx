@@ -27,36 +27,30 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 const int N = 100005;
 int n, vis[N], d1[N], d2[N], tot, maxv;
 vector<int> head(N, -1);
-struct Edge
-{
+struct Edge {
     int to, w, next;
 } edges[2 * N];
 
-void add(int u, int v, int w)
-{
+void add(int u, int v, int w) {
     edges[tot] = {v, w, head[u]};
     head[u] = tot++;
 }
 
-void dfs(int u, int depth, int *d)
-{
+void dfs(int u, int depth, int* d) {
     d[u] = depth;
     vis[u] = 1;
     if (d[maxv] < d[u])
         maxv = u;
-    for (int e = head[u]; e != -1; e = edges[e].next)
-    {
+    for (int e = head[u]; e != -1; e = edges[e].next) {
         int v = edges[e].to, w = edges[e].w;
         if (vis[v] == 1)
             continue;
         dfs(v, depth + w, d);
     }
 }
-void _()
-{
+void _() {
     cin >> n;
-    F(int, i, 1, n)
-    {
+    F(int, i, 1, n) {
         int u, v;
         cin >> u >> v;
         add(u, v, 1), add(v, u, 1);
@@ -73,8 +67,7 @@ void _()
     FF(int, i, 1, n)
     cout << max(d1[i], d2[i]) << " ";
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

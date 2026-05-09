@@ -26,18 +26,15 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 // #define int ll
 const int N = 505;
 int G[N][N], n, m, dx[] = {0, 0, 1, -1}, dy[] = {1, -1, 0, 0}, cnt;
-void _()
-{
+void _() {
     cin >> n >> m;
     FF(int, i, 1, n)
     FF(int, j, 1, m)
     cin >> G[i][j];
     FF(int, i, 1, n)
-    FF(int, j, 1, m)
-    {
+    FF(int, j, 1, m) {
         int f = 1;
-        F(int, k, 0, 4)
-        {
+        F(int, k, 0, 4) {
             int x = i + dx[k], y = j + dy[k];
             if (x > 0 && x <= n && y > 0 && y <= m)
                 f &= (G[i][j] > G[x][y]);
@@ -48,8 +45,7 @@ void _()
     }
     cout << cnt << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

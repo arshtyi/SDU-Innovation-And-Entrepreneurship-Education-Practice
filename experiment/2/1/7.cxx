@@ -25,12 +25,10 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 #define locall freopen("data.in", "r", stdin), freopen("data.out", "w", stdout)
 // #define int ll
 int n, m;
-bool contains7(ll x)
-{
+bool contains7(ll x) {
     if (x == 0)
         return false;
-    while (x)
-    {
+    while (x) {
         if (x % 10 == 7)
             return true;
         x /= 10;
@@ -38,32 +36,27 @@ bool contains7(ll x)
     return false;
 }
 
-bool clap(ll x)
-{
+bool clap(ll x) {
     return (x % 7 == 0) || contains7(x);
 }
 
-void _()
-{
-    cin>> n >> m;
+void _() {
+    cin >> n >> m;
     vector<ll> cnt(n + 1, 0);
-    FF(int, i, 1, m)
-    {
+    FF(int, i, 1, m) {
         if (!clap(i))
             continue;
         int person = (i - 1) % n + 1;
         ++cnt[person];
     }
-    FF(int, i, 1, n)
-    {
+    FF(int, i, 1, n) {
         if (i > 1)
             cout << ' ';
         cout << cnt[i];
     }
     cout << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

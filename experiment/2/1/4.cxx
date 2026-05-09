@@ -27,8 +27,7 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 const int N = 1e6 + 10;
 int n, cnt;
 vector<ll> a(N), pre(N);
-void _()
-{
+void _() {
     cin >> n;
     FF(int, i, 1, n)
     cin >> a[i], pre[i] = pre[i - 1] + a[i];
@@ -38,8 +37,7 @@ void _()
         cnt += (2 * pre[i] == pre[n]);
     cout << cnt << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

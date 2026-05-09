@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int n, r, g, b;
-int main()
-{
+int main() {
     cin >> n;
     char c;
     while (cin >> c)

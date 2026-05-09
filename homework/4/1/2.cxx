@@ -15,20 +15,17 @@ const ll LLINF = 0x3f3f3f3f3f3f3f3f;
 const int M = 1e9 + 7;
 // #define int ll
 int n;
-void _()
-{
+void _() {
     string s;
     cin >> n >> s;
     vector<int> cnt(26, 0);
     int unique = 0, ans = n + 1;
     int l = 0;
-    for (int r = 0; r < n; ++r)
-    {
+    for (int r = 0; r < n; ++r) {
         int idx = s[r] - 'A';
         if (++cnt[idx] == 1)
             unique++;
-        while (unique == 26)
-        {
+        while (unique == 26) {
             ans = min(ans, r - l + 1);
             int lidx = s[l] - 'A';
             if (--cnt[lidx] == 0)
@@ -41,8 +38,7 @@ void _()
     else
         cout << ans << endl;
 }
-signed main()
-{
+signed main() {
     int T = 1;
     // cin >> T;
     while (T--)

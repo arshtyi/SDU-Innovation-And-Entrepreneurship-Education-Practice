@@ -25,134 +25,100 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 #define locall freopen("data.in", "r", stdin), freopen("data.out", "w", stdout)
 // #define int ll
 
-void _()
-{
+void _() {
     string op;
     ll n, cnt = 0, top = -1;
     bool ht = 0;
     map<ll, ll> mp;
     vector<ll> q;
     cin >> n;
-    FF(int, i, 1, n)
-    {
+    FF(int, i, 1, n) {
         ll x;
         cnt++;
         cin >> op;
-        if (op == "Add")
-        {
+        if (op == "Add") {
             cin >> x;
             if (mp.count(x))
                 printf("OpId #%lld: same likeness.\n", cnt);
-            else
-            {
+            else {
                 mp[x] = 0;
                 q.eb(x);
                 printf("OpId #%lld: success.\n", cnt);
             }
-        }
-        else if (op == "Close")
-        {
+        } else if (op == "Close") {
             cin >> x;
-            if (mp.count(x))
-            {
+            if (mp.count(x)) {
                 printf("OpId #%lld: close %lld with %lld.\n", cnt, x, mp[x]);
                 q.erase(find(all(q), x));
                 mp.erase(x);
                 if (top == x)
                     ht = false;
-            }
-            else
+            } else
                 printf("OpId #%lld: invalid likeness.\n", cnt);
-        }
-        else if (op == "Chat")
-        {
+        } else if (op == "Chat") {
             cin >> x;
-            if (ht)
-            {
+            if (ht) {
                 mp[top] += x;
                 printf("OpId #%lld: success.\n", cnt);
-            }
-            else if (!q.empty())
-            {
+            } else if (!q.empty()) {
                 mp[q.front()] += x;
                 printf("OpId #%lld: success.\n", cnt);
-            }
-            else
+            } else
                 printf("OpId #%lld: empty.\n", cnt);
-        }
-        else if (op == "Rotate")
-        {
+        } else if (op == "Rotate") {
             cin >> x;
             if (x < 1 || x > q.size())
                 printf("OpId #%lld: out of range.\n", cnt);
-            else
-            {
+            else {
                 q.insert(q.begin(), q[x - 1]);
                 q.erase(q.begin() + x);
                 printf("OpId #%lld: success.\n", cnt);
             }
-        }
-        else if (op == "Prior")
-        {
+        } else if (op == "Prior") {
             if (q.empty())
                 printf("OpId #%lld: empty.\n", cnt);
-            else
-            {
+            else {
                 printf("OpId #%lld: success.\n", cnt);
                 auto it = max_element(all(q));
                 auto big = *it;
                 q.erase(it);
                 q.insert(q.begin(), big);
             }
-        }
-        else if (op == "Choose")
-        {
+        } else if (op == "Choose") {
             cin >> x;
-            if (mp.count(x))
-            {
+            if (mp.count(x)) {
                 printf("OpId #%lld: success.\n", cnt);
                 auto it = find(all(q), x);
                 auto u = *it;
                 q.erase(it);
                 q.insert(q.begin(), u);
-            }
-            else
+            } else
                 printf("OpId #%lld: invalid likeness.\n", cnt);
-        }
-        else if (op == "Top")
-        {
+        } else if (op == "Top") {
             cin >> x;
-            if (mp.count(x))
-            {
+            if (mp.count(x)) {
                 printf("OpId #%lld: success.\n", cnt);
                 top = x, ht = true;
-            }
-            else
+            } else
                 printf("OpId #%lld: invalid likeness.\n", cnt);
-        }
-        else if (op == "Untop")
-        {
-            if (ht)
-            {
+        } else if (op == "Untop") {
+            if (ht) {
                 printf("OpId #%lld: success.\n", cnt);
                 ht = false;
-            }
-            else
+            } else
                 printf("OpId #%lld: no such person.\n", cnt);
         }
     }
-    if (ht && mp[top])
-    {
+    if (ht && mp[top]) {
         printf("OpId #%lld: Bye %lld: %lld.\n", ++cnt, top, mp[top]);
         q.erase(find(all(q), top));
         mp.erase(top);
     }
-    for (auto &i : q)
+    for (auto& i : q)
         if (mp[i])
             printf("OpId #%lld: Bye %lld: %lld.\n", ++cnt, i, mp[i]);
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

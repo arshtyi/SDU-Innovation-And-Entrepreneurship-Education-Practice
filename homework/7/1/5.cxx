@@ -26,34 +26,35 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 // #define int ll
 const int N = 1e5 + 10;
 ll n, m, p, tot;
-struct edge
-{
+struct edge {
     ll u, v, nxt, w;
-    bool operator<(const edge &rhs) { return w < rhs.w; }
+    bool operator<(const edge& rhs) {
+        return w < rhs.w;
+    }
 };
 vector<ll> head(N, -1), fa(N);
 vector<edge> edges(3 * N);
-void addEdge(const ll &u, const ll &v, const ll &w) { edges[tot].u = u, edges[tot].v = v, edges[tot].w = w, edges[tot].nxt = head[u], head[u] = tot++; }
-ll find(const ll &x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
-bool unite(const ll &x, const ll &y)
-{
+void addEdge(const ll& u, const ll& v, const ll& w) {
+    edges[tot].u = u, edges[tot].v = v, edges[tot].w = w, edges[tot].nxt = head[u], head[u] = tot++;
+}
+ll find(const ll& x) {
+    return fa[x] == x ? x : fa[x] = find(fa[x]);
+}
+bool unite(const ll& x, const ll& y) {
     ll fx = find(x), fy = find(y);
     if (fx == fy)
         return false;
     fa[fx] = fy;
     return true;
 }
-ll kruskal()
-{
+ll kruskal() {
     sort(allab(edges, 0, tot));
     FF(ll, i, 0, n)
     fa[i] = i;
     ll ans = 0, cnt = 0;
-    F(ll, i, 0, tot)
-    {
+    F(ll, i, 0, tot) {
         auto e0 = edges[i];
-        if (unite(e0.u, e0.v))
-        {
+        if (unite(e0.u, e0.v)) {
             ans += e0.w;
             if (++cnt == n)
                 return ans;
@@ -61,21 +62,18 @@ ll kruskal()
     }
     return -1;
 }
-void _()
-{
+void _() {
     cin >> n >> m >> p;
     FF(ll, i, 1, n)
     addEdge(0, i, p);
-    FF(ll, i, 1, m)
-    {
+    FF(ll, i, 1, m) {
         ll a, b, c;
         cin >> a >> b >> c;
         addEdge(a, b, c);
     }
     cout << kruskal();
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

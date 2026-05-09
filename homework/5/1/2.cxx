@@ -25,19 +25,16 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 #define locall freopen("data.in", "r", stdin), freopen("data.out", "w", stdout)
 // #define int ll
 int x, y, n;
-void _()
-{
+void _() {
     cin >> n >> x >> y;
-    if (n == 1)
-    {
+    if (n == 1) {
         cout << min(x, y) << endl;
         return;
     }
     ll first = min(x, y);
     ll need = (ll)n - 1;
     ll lo = 0, hi = first * need;
-    while (lo < hi)
-    {
+    while (lo < hi) {
         ll mid = lo + (hi - lo) / 2;
         ll made = mid / x + mid / y;
         if (made >= need)
@@ -47,8 +44,7 @@ void _()
     }
     cout << first + lo << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

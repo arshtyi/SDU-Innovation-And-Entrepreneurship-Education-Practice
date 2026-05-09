@@ -1,13 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 pair<int, int> ans = {0, 1e5 + 100};
-signed
-main()
-{
+signed main() {
     int n;
     cin >> n;
-    for (int i = 1; i <= n; ++i)
-    {
+    for (int i = 1; i <= n; ++i) {
         int cost;
         cin >> cost;
         string s;

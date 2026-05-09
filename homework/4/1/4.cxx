@@ -17,12 +17,10 @@ const int M = 1e9 + 7;
 int n;
 stack<pair<int, ll>> s;
 long long a[1000100], L[1000010], R[1000010];
-void find(ll Ans[])
-{
+void find(ll Ans[]) {
     while (!s.empty())
         s.pop();
-    FF(i, 1, n)
-    {
+    FF(i, 1, n) {
         while (!s.empty() && s.top().second >= a[i])
             s.pop();
         if (s.empty())
@@ -33,8 +31,7 @@ void find(ll Ans[])
     }
 }
 
-int main()
-{
+int main() {
     cin >> n;
     FF(i, 1, n)
     cin >> a[i];

@@ -27,28 +27,23 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 const int N = 1e5 + 10;
 int n;
 vector<ll> a(N);
-void _()
-{
+void _() {
     cin >> n;
     ll mx = -LLINF;
-    FF(int, i, 1, n)
-    {
+    FF(int, i, 1, n) {
         cin >> a[i];
         mx = max(mx, a[i]);
     }
     int bestLen = 0, curLen = 0;
     FF(int, i, 1, n)
-    if (a[i] == mx)
-    {
+    if (a[i] == mx) {
         ++curLen;
         bestLen = max(bestLen, curLen);
-    }
-    else
+    } else
         curLen = 0;
     cout << mx << " " << bestLen << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;

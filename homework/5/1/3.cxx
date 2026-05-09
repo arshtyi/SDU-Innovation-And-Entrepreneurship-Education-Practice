@@ -25,8 +25,7 @@ const int M1 = 1e9 + 7, M2 = 998244353;
 #define locall freopen("data.in", "r", stdin), freopen("data.out", "w", stdout)
 // #define int ll
 int n;
-void _()
-{
+void _() {
     cin >> n;
     vector<ll> a(n);
     F(int, i, 0, n)
@@ -34,19 +33,16 @@ void _()
     ll profit = 0, transactions = 0;
     bool holding = false;
     F(int, i, 0, n - 1)
-    if (a[i + 1] > a[i])
-    {
+    if (a[i + 1] > a[i]) {
         profit += a[i + 1] - a[i];
         if (!holding)
             holding = true, ++transactions;
-    }
-    else if (a[i + 1] < a[i])
+    } else if (a[i + 1] < a[i])
         holding = false;
 
     cout << profit << ' ' << transactions * 2 << endl;
 }
-signed main()
-{
+signed main() {
     // local;
     cin.tie(0), cout.tie(0), ios::sync_with_stdio(0);
     int T = 1;
