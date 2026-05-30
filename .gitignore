@@ -1,4 +1,4 @@
-*.exe
-*.in
-.vscode/
 text/
+.venv/
+*.pdf
+archive/

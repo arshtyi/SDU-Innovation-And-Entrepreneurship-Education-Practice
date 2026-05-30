@@ -1,0 +1,14 @@
+{'tool': 'output_every_func_return_type', 'args': {'file_path': ''}}
+Generated tool call: {'tool': 'output_every_func_return_type', 'args': {'file_path': '/mnt/d/camp/bachelor/course/innovationandentrepreneurshipeducationpractice/2/experiment/1/prompt_engineering/tool_calling.py'}}
+Generated output: _annotation_to_str: str
+_list_function_return_types: List[Tuple[str, str]]
+add: int
+compute_expected_output: str
+execute_tool_call: str
+extract_tool_call: Dict[str, Any]
+greet: str
+output_every_func_return_type: str
+resolve_path: str
+run_model_for_tool_call: Dict[str, Any]
+test_your_prompt: bool
+SUCCESS

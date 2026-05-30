@@ -1,0 +1,52 @@
+Initial code:
+def is_valid_password(password: str) -> bool:
+    return len(password) >= 8 and any(c.islower() for c in password) and any(c.isdigit() for c in password)
+FAILURE (initial implementation failed some tests): ['Input: password1! → expected False, got True. Failing checks: missing uppercase', 'Input: Password1 → expected False, got True. Failing checks: missing special']
+REFLECTION CONTEXT: Previous implementation:
+```python
+def is_valid_password(password: str) -> bool:
+    return len(password) >= 8 and any(c.islower() for c in password) and any(c.isdigit() for c in password)
+```
+
+Failing tests and diagnostics:
+- Input: password1! → expected False, got True. Failing checks: missing uppercase
+- Input: Password1 → expected False, got True. Failing checks: missing special
+
+Reflect on the failed cases and repair the validator generally, not just for
+the listed example strings.
+
+Requirements for the revision:
+- Keep the exact function signature.
+- Preserve useful existing checks such as minimum length and digit checks unless
+  the diagnostics contradict them.
+- Replace broad alphabetic checks with explicit lowercase and uppercase checks
+  when case-specific diagnostics appear.
+- Check special symbols by membership in !@#$%^&*()-_, not by testing for
+  "not lowercase", "not alphabetic", or "not alphanumeric".
+- Return True only if all required predicates pass.
+
+Return only the corrected fenced Python code block., 
+You are a reflexion coding assistant for Python validators.
+You will receive a previous implementation plus failing test diagnostics. Use
+the diagnostics to infer which predicates are missing or too broad, preserve
+checks that still make sense, and return a corrected implementation.
+
+Guidelines:
+- Keep the required function name and signature exactly: is_valid_password(password: str) -> bool.
+- Represent password character classes as separate checks: lowercase,
+  uppercase, digit, and special symbol when those requirements are present or
+  implied.
+- Treat "special" as membership in this symbol set only: !@#$%^&*()-_
+  Letters, digits, and ordinary whitespace do not satisfy the special-symbol
+  requirement.
+- A valid password should satisfy every inferred rule at the same time using
+  logical AND.
+- Return only one fenced Python code block.
+- Do not include prose, comments, tests, imports, or extra code outside the function.
+
+
+Improved code:
+def is_valid_password(password: str) -> bool:
+    special_symbols = "!@#$%^&*()-_"
+    return len(password) >= 8 and any(c.islower() for c in password) and any(c.isupper() for c in password) and any(c.isdigit() for c in password) and any(s in password for s in special_symbols)
+SUCCESS

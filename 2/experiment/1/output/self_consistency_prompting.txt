@@ -1,0 +1,12 @@
+Running test 1 of 5
+Run 1 answer: Answer: 25
+Running test 2 of 5
+Run 2 answer: Answer: 25
+Running test 3 of 5
+Run 3 answer: Answer: 25
+Running test 4 of 5
+Run 4 answer: Answer: 25
+Running test 5 of 5
+Run 5 answer: Answer: 25
+Majority answer: Answer: 25 (5/5)
+SUCCESS
