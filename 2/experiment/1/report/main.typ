@@ -7,8 +7,8 @@
 #let institute = "计算机科学与技术"
 #let course = "创新创业教育实践实践"
 #let author = "arshtyi"
-#let id = "821600046"
-#let class = "xxx"
+#let id = "202400130242"
+#let class = "24智能"
 #let date = datetime.today()
 #let title = "Prompting Techniques"
 
